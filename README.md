@@ -1,66 +1,84 @@
-# 📉 Telco Customer Churn Analysis + Model Building
+# 📉 Customer Churn Prediction – Telco Dataset
 
-This notebook analyzes customer churn behavior in a telecom company using the IBM Telco Customer Churn dataset. The focus is on understanding key churn drivers and building a predictive model using Random Forest.
-
----
-
-## 📊 Dataset Overview
-
-- **Source:** IBM Sample Dataset
-- **Rows:** 7,043 customer records
-- **Target:** `Churn` (Yes/No)
-
-### Key Features:
-- Customer demographics (gender, senior citizen, dependents)
-- Subscription services (internet, streaming, tech support, etc.)
-- Account info (tenure, contract, billing)
-- Charges (monthly & total)
+This project explores the IBM Telco Customer Churn dataset to identify key factors behind customer attrition and build a predictive machine learning model. The goal is to help telecom companies anticipate and reduce customer churn.
 
 ---
 
-## ✅ Project Workflow
+## 🎯 Objective
 
-### 1. Data Cleaning & Preprocessing
-- Converted `TotalCharges` to numeric, handled coercion errors
-- Removed rows with missing values (mostly new customers with no usage)
-- Converted `SeniorCitizen` from 0/1 to Yes/No
-- Binned `tenure` into labeled groups (`1-12`, `13-24`, etc.)
-- Dropped non-informative columns (e.g., `customerID`)
-
-### 2. Exploratory Data Analysis
-- Distribution of churn vs non-churn customers
-- Segment analysis: churn rates by tenure group, contract type, payment method
-- Charge distribution and comparisons
-- Correlation matrix for numerical features
-
-### 3. Model Building – Random Forest
-- Trained a `RandomForestClassifier` on cleaned data
-- Used train-test split to evaluate model
-- Visualized confusion matrix and computed F1-score
-- Displayed feature importances to understand predictive power
+- Analyze customer behavior to uncover churn patterns
+- Engineer features to improve model performance
+- Train a classification model to predict churn risk
+- Explain model behavior using SHAP values
 
 ---
 
-## 🔍 Key Insights
+## 🛠️ Tech Stack
 
-- Month-to-month customers have the highest churn risk
-- Short-tenure users (1–12 months) churn more often
-- High monthly charges and manual payment methods are common among churners
-- Services like tech support and online security influence retention
-
----
-
-## ⚙️ Technologies & Libraries
-
-- Python 3.12.9
-- Jupyter Notebook
+- Python
 - pandas, numpy
-- matplotlib, seaborn
+- seaborn, matplotlib
 - scikit-learn
-- imbalanced-learn (SMOTE handling)
+- imbalanced-learn (SMOTE)
 
 ---
 
-## 👤 Author
+## 📦 Dataset Overview
 
-Shresth Jain
+- **Total Records:** ~7,043
+- **Source:** IBM Sample Dataset
+- **Target Variable:** `Churn` (Yes/No)
+
+Key features include:
+- Demographics: gender, senior citizen, dependents
+- Services: Internet, phone, security, streaming
+- Contract & Billing: tenure, contract type, payment method
+- Charges: monthly charges, total charges
+
+---
+
+## 🔍 Analysis Workflow
+
+### 1️⃣ Data Cleaning & Preprocessing
+- Converted `TotalCharges` from object to numeric
+- Removed rows with missing values
+- Mapped `SeniorCitizen` from 0/1 to `Yes`/`No`
+- Created tenure groups (e.g., `1–12`, `13–24`, etc.)
+- Dropped irrelevant column (`customerID`)
+
+### 2️⃣ Exploratory Data Analysis (EDA)
+- Univariate and bivariate analysis of features vs churn
+- Key insights:
+  - Highest churn in month-to-month contracts
+  - Fiber optic users churn more than DSL users
+  - Electronic check payments show high churn
+  - Low tenure = high churn risk
+
+### 3️⃣ Modeling – Random Forest Classifier
+- Applied SMOTE to balance churn class
+- Train-test split (70-30)
+- Trained `RandomForestClassifier`
+- Achieved:
+  - **Accuracy:** ~95.5%
+  - **F1-score (churn):** 95%
+  - **Confusion matrix & classification report**
+
+### 4️⃣ Explainability – SHAP
+- Used `TreeExplainer` to calculate SHAP values
+- Visualized global feature importance via summary plot
+- Identified top contributors to churn:
+  - Contract type
+  - Tenure
+  - Monthly charges
+  - Payment method
+
+---
+
+## 📊 Key Results
+
+| Metric         | Value   |
+|----------------|---------|
+| Accuracy       | 95.5%   |
+| F1 Score       | 95%     |
+| Top Features    | Contract type, tenure group, monthly charges |
+| Insight         | Short-tenure users with monthly contracts and high bills are most likely to churn |
