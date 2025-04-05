@@ -63,17 +63,6 @@ Key features include:
   - **F1-score (churn):** 95%
   - **Confusion matrix & classification report**
 
-### 4️⃣ Explainability – SHAP
-- Used `TreeExplainer` to calculate SHAP values
-- Visualized global feature importance via summary plot
-- Identified top contributors to churn:
-  - Contract type
-  - Tenure
-  - Monthly charges
-  - Payment method
-
----
-
 ## 📊 Key Results
 
 | Metric         | Value   |
